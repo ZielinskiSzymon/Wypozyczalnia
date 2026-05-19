@@ -1,0 +1,21 @@
+id,marka,model,kategoria,rok_produkcji,rodzaj_paliwa,skrzynia_biegow,liczba_miejsc,cena_za_dobe,status_dostepnosci,zdjecie
+1,Toyota,Yaris,miejskie,2021,benzyna,manualna,5,120,true,toyota_yaris.jpg
+2,Volkswagen,Golf,kompaktowe,2020,diesel,automatyczna,5,150,true,vw_golf.jpg
+3,BMW,X5,SUV,2022,hybryda,automatyczna,5,350,false,bmw_x5.jpg
+4,Audi,A6,premium,2021,diesel,automatyczna,5,300,true,audi_a6.jpg
+5,Skoda,Octavia,kompaktowe,2019,benzyna,manualna,5,140,true,skoda_octavia.jpg
+6,Ford,Focus,kompaktowe,2018,diesel,manualna,5,130,false,ford_focus.jpg
+7,Mercedes,E-Class,premium,2022,hybryda,automatyczna,5,400,true,mercedes_eclass.jpg
+8,Hyundai,i30,kompaktowe,2020,benzyna,manualna,5,125,true,hyundai_i30.jpg
+9,Kia,Sportage,SUV,2021,benzyna,automatyczna,5,200,true,kia_sportage.jpg
+10,Renault,Clio,miejskie,2019,benzyna,manualna,5,110,true,renault_clio.jpg
+11,Peugeot,308,kompaktowe,2020,diesel,manualna,5,135,false,peugeot_308.jpg
+12,Opel,Astra,kompaktowe,2018,benzyna,manualna,5,120,true,opel_astra.jpg
+13,Nissan,Qashqai,SUV,2021,hybryda,automatyczna,5,210,true,nissan_qashqai.jpg
+14,Mazda,CX-5,SUV,2022,benzyna,automatyczna,5,220,false,mazda_cx5.jpg
+15,Fiat,500,miejskie,2019,benzyna,manualna,4,100,true,fiat_500.jpg
+16,Citroen,Berlingo,dostawcze,2020,diesel,manualna,3,160,true,citroen_berlingo.jpg
+17,Dacia,Duster,SUV,2021,benzyna,manualna,5,180,true,dacia_duster.jpg
+18,Tesla,Model 3,premium,2022,elektryczny,automatyczna,5,350,true,tesla_model3.jpg
+19,Volvo,XC60,SUV,2021,hybryda,automatyczna,5,320,false,volvo_xc60.jpg
+20,Honda,Civic,kompaktowe,2020,benzyna,manualna,5,145,true,honda_civic.jpg
