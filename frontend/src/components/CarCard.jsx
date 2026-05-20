@@ -1,6 +1,6 @@
-export default function CarCard({ car, user, onRent }) {
+export default function CarCard({ car, user, onRent, onSelectCar }) {
 	return (
-		<div className='col box animate-card'>
+		<div className='col box animate-card' onClick={() => onSelectCar(car)}>
 			<div className='h-100 border-0 shadow-sm rounded-4 overflow-hidden bg-white card-car-custom d-flex flex-column'>
 				<div className='position-relative overflow-hidden' style={{ height: '200px' }}>
 					<img src={car.zdjecie} alt={car.model} className='w-100 h-100 object-fit-cover img-transition' />
@@ -19,7 +19,10 @@ export default function CarCard({ car, user, onRent }) {
 					<div className='szczegoly mt-auto'>
 						<button
 							className={`btn w-100 py-2 rounded-3 fw-medium ${!car.status_dostepnosci ? 'btn-light text-muted' : user ? 'btn-dark' : 'btn-outline-primary'}`}
-							onClick={() => onRent(car.id)}
+							onClick={(e) => {
+								e.stopPropagation();
+								onRent(car.id);
+							}}
 							disabled={!car.status_dostepnosci || !user}>
 							{!car.status_dostepnosci ? 'Niedostępny' : user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}
 						</button>

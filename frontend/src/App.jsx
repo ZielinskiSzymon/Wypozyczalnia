@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { supabase } from './utils/supabase'
 import { useAuth } from './hooks/useAuth'
 import { useCars } from './hooks/useCars'
@@ -5,11 +6,14 @@ import { rentCar } from './services/rentService'
 import AuthZone from './components/AuthZone'
 import Header from './components/Header'
 import CarsList from './components/CarsList'
+import { CarInfoCard } from './components/CarInfoCard'
 import './App.css'
 
 export default function App() {
 	const { user, logout } = useAuth()
 	const { filteredCars, filterCars, updateCarAvailability } = useCars()
+
+	const [selectedCar, setSelectedCar] = useState(null)
 
 	const handleRent = async (carId) => {
 		const {
@@ -36,7 +40,15 @@ export default function App() {
 		<div className='container my-5'>
 			<AuthZone user={user} onLogout={handleLogout} />
 			<Header onSearch={filterCars} />
-			<CarsList cars={filteredCars} user={user} onRent={handleRent} />
+			<CarsList cars={filteredCars} user={user} onRent={handleRent} onSelectCar={setSelectedCar} />
+			{selectedCar && (
+				<CarInfoCard 
+					car={selectedCar} 
+					user={user} 
+					onRent={handleRent} 
+					onClose={() => setSelectedCar(null)} 
+				/>
+			)}
 		</div>
 	)
 }
