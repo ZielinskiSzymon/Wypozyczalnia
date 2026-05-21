@@ -17,8 +17,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "Roboto", sans-serif;
-
+	font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -30,7 +29,8 @@ body {
 	background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
 	border: 1px solid var(--border-light) !important;
 	box-shadow: var(--shadow-sm) !important;
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
+	animation: fadeIn 0.3s ease-out;
 }
 
 .auth-zone:hover {
@@ -44,35 +44,35 @@ body {
 	object-fit: cover;
 	display: block;
 	border-radius: 0.75rem 0.75rem 0 0;
-	transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	transition: transform 0.3s ease;
 }
 
 .car-card-img:hover {
-	transform: scale(1.08);
+	transform: scale(1.05);
 	filter: brightness(0.95);
 }
 
 .card-car-custom {
 	background: white;
 	border: 1px solid var(--border-light) !important;
-	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	transition: all 0.2s ease;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 }
 
 .card-car-custom:hover {
-	transform: translateY(-8px);
+	transform: translateY(-4px);
 	box-shadow: var(--shadow-lg) !important;
 	border-color: var(--primary-light) !important;
 }
 
 .img-transition {
-	transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	transition: transform 0.3s ease;
 }
 
 .card-car-custom:hover .img-transition {
-	transform: scale(1.08);
+	transform: scale(1.05);
 }
 
 .info {
@@ -93,7 +93,7 @@ body {
 .btn {
 	border-radius: 0.5rem;
 	font-weight: 600;
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
 	padding: 0.625rem 1.25rem !important;
 }
 
@@ -179,9 +179,6 @@ body {
 	border-radius: 50%;
 	display: inline-block;
 	background: var(--success-color) !important;
-}
-
-.animate-pulse {
 	animation: pulse 2s infinite;
 }
 
@@ -219,16 +216,18 @@ body {
 	font-size: 0.95rem;
 }
 
-.form-control {
+.form-control,
+.form-select {
 	border: 1px solid var(--border-light) !important;
 	border-radius: 0.5rem !important;
 	padding: 0.625rem 1rem !important;
 	font-size: 0.9rem;
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
 	background: white;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
 	border-color: var(--primary-light) !important;
 	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
 	outline: none;
@@ -238,11 +237,18 @@ body {
 	color: var(--text-muted);
 }
 
-.animate-fade-in {
-	animation: fadeIn 0.5s ease-out forwards;
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-@keyframes fadeIn {
+@keyframes slideUp {
 	from {
 		opacity: 0;
 		transform: translateY(20px);
@@ -253,43 +259,36 @@ body {
 	}
 }
 
+.animate-fade-in {
+	animation: fadeIn 0.3s ease-out;
+}
+
 .animate-card {
-	animation: slideUp 0.6s ease-out forwards;
+	animation: slideUp 0.4s ease-out forwards;
 	opacity: 0;
 }
 
-@keyframes slideUp {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-.row-cols-1 .col {
-	animation: slideUp 0.6s ease-out forwards;
+.row-cols-1 .col:nth-child(n) {
+	animation: slideUp 0.4s ease-out forwards;
 }
 
 .row-cols-1 .col:nth-child(1) {
-	animation-delay: 0.1s;
+	animation-delay: 0.05s;
 }
 .row-cols-1 .col:nth-child(2) {
-	animation-delay: 0.2s;
+	animation-delay: 0.1s;
 }
 .row-cols-1 .col:nth-child(3) {
-	animation-delay: 0.3s;
+	animation-delay: 0.15s;
 }
 .row-cols-1 .col:nth-child(4) {
-	animation-delay: 0.4s;
+	animation-delay: 0.2s;
 }
 .row-cols-1 .col:nth-child(5) {
-	animation-delay: 0.5s;
+	animation-delay: 0.25s;
 }
 .row-cols-1 .col:nth-child(6) {
-	animation-delay: 0.6s;
+	animation-delay: 0.3s;
 }
 
 @media (max-width: 576px) {
@@ -301,8 +300,11 @@ body {
 		padding: 1.25rem !important;
 	}
 
-	.form-control {
+	.form-control,
+	.form-select {
 		max-width: 100% !important;
+		font-size: 0.85rem;
+		padding: 0.5rem 0.75rem !important;
 	}
 
 	.btn {
@@ -337,4 +339,8 @@ body {
 
 .bg-white {
 	background-color: white;
+}
+
+.text-primary-emphasis {
+	color: var(--primary-dark) !important;
 }

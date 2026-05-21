@@ -33,7 +33,7 @@ export default function AuthZone({ user, onLogout }) {
 			{user ? (
 				<div className='d-flex justify-content-between align-items-center w-100'>
 					<div className='d-flex align-items-center gap-2'>
-						<span className='dot bg-success animate-pulse'></span>
+						<span className='dot bg-success animate-pulse me-2'></span>
 						<span className='text-muted'>
 							Zalogowany jako: <strong className='text-dark'>{user.email}</strong>
 						</span>

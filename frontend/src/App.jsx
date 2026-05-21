@@ -11,7 +11,15 @@ import './App.css'
 
 export default function App() {
 	const { user, logout } = useAuth()
-	const { filteredCars, filterCars, updateCarAvailability } = useCars()
+	const {
+		filteredCars,
+		applyFilters,
+		updateCarAvailability,
+		getUniqueFuels,
+		getUniqueGearboxes,
+		getUniqueChassises,
+		filters,
+	} = useCars()
 
 	const [selectedCar, setSelectedCar] = useState(null)
 
@@ -39,15 +47,16 @@ export default function App() {
 	return (
 		<div className='container my-5'>
 			<AuthZone user={user} onLogout={handleLogout} />
-			<Header onSearch={filterCars} />
+			<Header
+				onFilterChange={applyFilters}
+				fuels={getUniqueFuels()}
+				gearboxes={getUniqueGearboxes()}
+				chassis={getUniqueChassises()}
+				filters={filters}
+			/>
 			<CarsList cars={filteredCars} user={user} onRent={handleRent} onSelectCar={setSelectedCar} />
 			{selectedCar && (
-				<CarInfoCard 
-					car={selectedCar} 
-					user={user} 
-					onRent={handleRent} 
-					onClose={() => setSelectedCar(null)} 
-				/>
+				<CarInfoCard car={selectedCar} user={user} onRent={handleRent} onClose={() => setSelectedCar(null)} />
 			)}
 		</div>
 	)
