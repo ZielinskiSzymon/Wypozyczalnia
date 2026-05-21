@@ -340,7 +340,3 @@ body {
 .bg-white {
 	background-color: white;
 }
-
-.text-primary-emphasis {
-	color: var(--primary-dark) !important;
-}
