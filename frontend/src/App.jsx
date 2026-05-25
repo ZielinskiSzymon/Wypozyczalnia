@@ -13,15 +13,7 @@ import './App.css'
 
 export default function App() {
 	const { user, logout } = useAuth()
-	const {
-		filteredCars,
-		applyFilters,
-		updateCarAvailability,
-		getUniqueFuels,
-		getUniqueGearboxes,
-		getUniqueChassises,
-		filters,
-	} = useCars()
+	const { filteredCars, applyFilters, getUniqueFuels, getUniqueGearboxes, getUniqueChassises, filters } = useCars()
 
 	const [selectedCar, setSelectedCar] = useState(null)
 
@@ -38,7 +30,6 @@ export default function App() {
 
 		const token = session.access_token
 		await rentCar(carId, dataOd, dataDo, token, () => {
-			updateCarAvailability(carId)
 			setSelectedCar(null) // Zamyka okno po udanej rezerwacji
 		})
 	}
@@ -49,16 +40,19 @@ export default function App() {
 
 	return (
 		<div className='container my-5'>
-			{/* Okno rezerwacji wyświetli się TYLKO, gdy wybierzesz auto */}
-			{selectedCar && (
-				<RentCarCard  
-					car={selectedCar} 
-					user={user} 
-					onRent={handleRent} 
-					onClose={() => setSelectedCar(null)} 
+			{selectedCar && !selectedCar.openRental && (
+				<CarInfoCard
+					car={selectedCar}
+					user={user}
+					onSelectCar={(car) => setSelectedCar({ ...car, openRental: true })}
+					onClose={() => setSelectedCar(null)}
 				/>
 			)}
-			
+
+			{selectedCar && selectedCar.openRental && (
+				<RentCarCard car={selectedCar} user={user} onRent={handleRent} onClose={() => setSelectedCar(null)} />
+			)}
+
 			<AuthZone user={user} onLogout={handleLogout} />
 			<Header
 				applyFilters={applyFilters}

@@ -25,6 +25,7 @@ body {
 	color: var(--text-dark);
 }
 
+/* Strefa Logowania / Rejestracji */
 .auth-zone {
 	background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
 	border: 1px solid var(--border-light) !important;
@@ -38,20 +39,7 @@ body {
 	border-color: var(--primary-light) !important;
 }
 
-.car-card-img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	display: block;
-	border-radius: 0.75rem 0.75rem 0 0;
-	transition: transform 0.3s ease;
-}
-
-.car-card-img:hover {
-	transform: scale(1.05);
-	filter: brightness(0.95);
-}
-
+/* Karta Samochodu */
 .card-car-custom {
 	background: white;
 	border: 1px solid var(--border-light) !important;
@@ -75,21 +63,12 @@ body {
 	transform: scale(1.05);
 }
 
-.info {
-	position: relative;
-	overflow: hidden;
-	padding: 1.25rem !important;
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
 .szczegoly {
 	margin-top: auto;
 	width: 100%;
 }
 
+/* Przyciski globalne */
 .btn {
 	border-radius: 0.5rem;
 	font-weight: 600;
@@ -142,6 +121,7 @@ body {
 	transform: none !important;
 }
 
+/* Badges i statusy */
 .badge {
 	font-size: 0.75rem;
 	font-weight: 600;
@@ -154,10 +134,6 @@ body {
 .bg-success-subtle {
 	box-shadow: var(--shadow-sm) !important;
 	background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
-}
-
-.bg-gray {
-	background-color: #efefef;
 }
 
 .bg-danger-subtle {
@@ -173,29 +149,7 @@ body {
 	color: var(--danger-color) !important;
 }
 
-.dot {
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	display: inline-block;
-	background: var(--success-color) !important;
-	animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-	0%,
-	100% {
-		opacity: 1;
-		transform: scale(1);
-		box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-	}
-	50% {
-		opacity: 0.8;
-		transform: scale(1.1);
-		box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-	}
-}
-
+/* Nagłówek i Filtry */
 .header {
 	margin-bottom: 2rem;
 	padding-bottom: 1.5rem;
@@ -221,143 +175,65 @@ body {
 	border: 1px solid var(--border-light) !important;
 	border-radius: 0.5rem !important;
 	padding: 0.625rem 1rem !important;
-	font-size: 0.9rem;
-	transition: all 0.2s ease;
-	background: white;
+	font-size: 0.9rem !important;
+	transition: all 0.2s ease !important;
+	background-color: #fff !important;
+	color: var(--text-dark) !important;
 }
 
 .form-control:focus,
 .form-select:focus {
 	border-color: var(--primary-light) !important;
-	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-	outline: none;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+	outline: none !important;
 }
 
-.form-control::placeholder {
-	color: var(--text-muted);
+/* Animacje i efekty */
+.animate-card {
+	animation: fadeInUp 0.4s ease-out both;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-		transform: translateY(10px);
 	}
 	to {
 		opacity: 1;
-		transform: translateY(0);
 	}
 }
 
-@keyframes slideUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-.animate-fade-in {
-	animation: fadeIn 0.3s ease-out;
-}
-
-.animate-card {
-	animation: slideUp 0.4s ease-out forwards;
-	opacity: 0;
-}
-
-.row-cols-1 .col:nth-child(n) {
-	animation: slideUp 0.4s ease-out forwards;
-}
-
-.row-cols-1 .col:nth-child(1) {
-	animation-delay: 0.05s;
-}
-.row-cols-1 .col:nth-child(2) {
-	animation-delay: 0.1s;
-}
-.row-cols-1 .col:nth-child(3) {
-	animation-delay: 0.15s;
-}
-.row-cols-1 .col:nth-child(4) {
-	animation-delay: 0.2s;
-}
-.row-cols-1 .col:nth-child(5) {
-	animation-delay: 0.25s;
-}
-.row-cols-1 .col:nth-child(6) {
-	animation-delay: 0.3s;
-}
-
-@media (max-width: 576px) {
-	.header h1 {
-		font-size: 1.5rem;
-	}
-
-	.auth-zone {
-		padding: 1.25rem !important;
-	}
-
-	.form-control,
-	.form-select {
-		max-width: 100% !important;
-		font-size: 0.85rem;
-		padding: 0.5rem 0.75rem !important;
-	}
-
-	.btn {
-		padding: 0.5rem 1rem !important;
-		font-size: 0.9rem;
-	}
-}
-
-.text-sm {
-	font-size: 0.875rem !important;
-}
-
-.gap-3 {
-	gap: 1.5rem;
-}
-
-.rounded-pill {
-	border-radius: 9999px !important;
-}
-
-.rounded-4 {
-	border-radius: 1rem !important;
-}
-
-.shadow-sm {
+/* STYLOWANIE KALENDARZA (LIGHT THEME) */
+.custom-calendar-container .react-calendar {
+	width: 100% !important;
+	background: #ffffff !important;
+	border: 1px solid var(--border-light) !important;
+	border-radius: 12px !important;
+	font-family: 'Roboto', sans-serif !important;
+	padding: 8px;
 	box-shadow: var(--shadow-sm) !important;
 }
 
-.shadow-md {
-	box-shadow: var(--shadow-md) !important;
-}
-
-.bg-white {
-	background-color: white;
-}
-.custom-calendar-container {
-	background-color: #ffffff !important;
-}
-
-.custom-calendar-container .react-calendar {
-	background: #ffffff !important;
-	color: var(--text-dark) !important;
-	border: none !important;
-	width: 100% !important;
-}
-
 .custom-calendar-container .react-calendar__navigation button {
-	color: var(--primary-color) !important;
+	color: var(--primary-dark) !important;
+	min-width: 44px;
+	background: none;
+	font-size: 1.1rem;
 	font-weight: 700;
-	font-size: 1rem;
 }
 
-.custom-calendar-container .react-calendar__navigation button:enabled:hover {
+.custom-calendar-container .react-calendar__navigation button:enabled:hover,
+.custom-calendar-container .react-calendar__navigation button:enabled:focus {
 	background-color: #f0f9ff !important;
 	border-radius: 8px;
 }
@@ -380,6 +256,7 @@ body {
 	background-color: #f1f5f9 !important;
 }
 
+/* ZAJĘTE DNI - DELIKATNY CZERWONY */
 .custom-calendar-container .react-calendar__tile.booked-tile {
 	background: #fff1f2 !important;
 	color: #f43f5e !important;
@@ -388,6 +265,7 @@ body {
 	cursor: not-allowed !important;
 }
 
+/* ZAKRESY WYBRANYCH DAT */
 .custom-calendar-container .react-calendar__tile--range {
 	background-color: #eff6ff !important;
 	color: var(--primary-color) !important;
@@ -395,19 +273,15 @@ body {
 }
 
 .custom-calendar-container .react-calendar__tile--rangeStart {
-	background: var(--primary-color) !important;
+	background-color: var(--primary-color) !important;
 	color: white !important;
 	border-top-left-radius: 8px !important;
 	border-bottom-left-radius: 8px !important;
 }
 
 .custom-calendar-container .react-calendar__tile--rangeEnd {
-	background: var(--primary-color) !important;
+	background-color: var(--primary-color) !important;
 	color: white !important;
 	border-top-right-radius: 8px !important;
 	border-bottom-right-radius: 8px !important;
-}
-
-.custom-calendar-container .react-calendar__tile--active:enabled:focus {
-	background: var(--primary-dark) !important;
 }

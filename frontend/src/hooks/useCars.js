@@ -82,16 +82,9 @@ export function useCars() {
 		return Array.from(chassis).sort()
 	}
 
-	const updateCarAvailability = (carId) => {
-		const updatedCars = cars.map((car) => (car.id === carId ? { ...car, status_dostepnosci: false } : car))
-		setCars(updatedCars)
-		setFilteredCars(filteredCars.map((car) => (car.id === carId ? { ...car, status_dostepnosci: false } : car)))
-	}
-
 	return {
 		filteredCars,
 		applyFilters,
-		updateCarAvailability,
 		getUniqueFuels,
 		getUniqueGearboxes,
 		getUniqueChassises,

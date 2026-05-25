@@ -11,11 +11,22 @@ export default function RentCarCard({ car, user, onRent, onClose }) {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 
 	useEffect(() => {
+		const prevPadding = document.body.style.paddingRight || ''
+		const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
+		if (scrollBarWidth > 0) document.body.style.paddingRight = `${scrollBarWidth}px`
+		document.body.style.overflow = 'hidden'
+		return () => {
+			document.body.style.overflow = ''
+			document.body.style.paddingRight = prevPadding
+		}
+	}, [])
+
+	useEffect(() => {
 		if (!car?.id) return
 		async function fetchRentals() {
 			const { data, error } = await supabase
 				.from('wypozyczenia')
-				.select('data_wypozyczenia, data_zwrotu') // Zmiana na faktyczne kolumny z Supabase
+				.select('data_wypozyczenia, data_zwrotu')
 				.eq('auto_id', car.id)
 
 			if (!error && data) {

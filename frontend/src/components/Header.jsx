@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Filters from './Filters'
 
-export default function Header({ onFilterChange, fuels, gearboxes, chassis, filters, onSearch }) {
+export default function Header({ onFilterChange, fuels, gearboxes, chassis, filters }) {
 	const [searchQuery, setSearchQuery] = useState('')
 
 	const handleSearch = (e) => {
