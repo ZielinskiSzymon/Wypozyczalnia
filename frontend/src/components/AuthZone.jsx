@@ -38,7 +38,7 @@ export default function AuthZone({ user, onLogout }) {
 							Zalogowany jako: <strong className='text-dark d-block d-sm-inline'>{user.email}</strong>
 						</span>
 					</div>
-					<button className='btn btn-sm btn-outline-danger px-4 rounded-pill w-100 w-sm-auto' onClick={onLogout}>
+					<button className='btn btn-sm btn-outline-danger px-4 rounded-pill w-50 w-lg-25 w-sm-auto' onClick={onLogout}>
 						Wyloguj się
 					</button>
 				</div>

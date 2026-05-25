@@ -1,8 +1,5 @@
-export async function rentCar(carId, token, onSuccess) {
+export async function rentCar(carId, dataOd, dataDo, token, onSuccess) {
 	try {
-		const returnDate = new Date()
-		returnDate.setDate(returnDate.getDate() + 3)
-
 		const response = await fetch('http://localhost:3000/rent', {
 			method: 'POST',
 			headers: {
@@ -11,7 +8,8 @@ export async function rentCar(carId, token, onSuccess) {
 			},
 			body: JSON.stringify({
 				auto_id: carId,
-				data_zwrotu: returnDate.toISOString(),
+				data_wypozyczenia: dataOd,
+				data_zwrotu: dataDo,
 			}),
 		})
 

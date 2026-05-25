@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export function CarInfoCard({ car, user, onRent, onClose }) {
+export function CarInfoCard({ car, user, onSelectCar, onClose }) {
 	useEffect(() => {
 		const prevPadding = document.body.style.paddingRight || ''
 		const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -21,7 +21,6 @@ export function CarInfoCard({ car, user, onRent, onClose }) {
 				className='bg-white p-3 p-sm-4 p-md-5 rounded-4 position-relative overflow-y-auto w-100'
 				style={{ minWidth: '320px', maxWidth: '800px', maxHeight: '95vh' }}
 				onClick={(e) => e.stopPropagation()}>
-				{/* Przycisk zamknięcia dostosowany pod iPhone */}
 				<button
 					className='btn-close position-absolute'
 					style={{ top: '1.25rem', right: '1.25rem', zIndex: 1060 }}
@@ -32,18 +31,12 @@ export function CarInfoCard({ car, user, onRent, onClose }) {
 					<h2 className='fw-bold fs-3 mb-0'>
 						{car.marka} {car.model}
 					</h2>
-					<span
-						className={`badge px-2.5 py-1.5 rounded-pill ${car.status_dostepnosci ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}`}>
-						{car.status_dostepnosci ? 'Dostępne' : 'Niedostępne'}
-					</span>
 				</div>
 				<hr className='my-2 mb-4' />
 
 				<div className='row g-4'>
-					{/* Lewa kolumna: Specyfikacja (Na mobile ląduje jako DRUGA) */}
 					<div className='col-12 col-md-5 order-2 order-md-1'>
 						<h3 className='fw-bold text-dark mb-3 fs-5 d-none d-md-block'>Specyfikacja pojazdu</h3>
-
 						<div className='p-1 p-sm-2 rounded-3'>
 							<div className='d-flex justify-content-between align-items-center mb-2 border-bottom pb-2'>
 								<span className='text-muted small'>
@@ -51,36 +44,31 @@ export function CarInfoCard({ car, user, onRent, onClose }) {
 								</span>
 								<span className='fw-semibold small me-2'>{car.rok_produkcji}</span>
 							</div>
-
 							<div className='d-flex justify-content-between align-items-center mb-2 border-bottom pb-2'>
 								<span className='text-muted small'>
 									<i className='bi bi-tags me-2'></i>Kategoria:
 								</span>
 								<span className='fw-semibold small me-2'>{car.kategoria}</span>
 							</div>
-
 							<div className='d-flex justify-content-between align-items-center mb-2 border-bottom pb-2'>
 								<span className='text-muted small'>
 									<i className='bi bi-fuel-pump me-2'></i>Rodzaj paliwa:
 								</span>
 								<span className='fw-semibold small me-2 text-capitalize'>{car.rodzaj_paliwa}</span>
 							</div>
-
 							<div className='d-flex justify-content-between align-items-center mb-2 border-bottom pb-2'>
 								<span className='text-muted small'>
 									<i className='bi bi-gear me-2'></i>Skrzynia biegów:
 								</span>
 								<span className='fw-semibold small me-2 text-capitalize'>{car.skrzynia_biegow}</span>
 							</div>
-
 							<div className='d-flex justify-content-between align-items-center mb-2 border-bottom pb-2'>
 								<span className='text-muted small'>
 									<i className='bi bi-people me-2'></i>Liczba miejsc:
 								</span>
 								<span className='fw-semibold small me-2'>{car.liczba_miejsc}</span>
 							</div>
-
-							<div className='d-flex flex-column pt-2'>
+							<div className='d-flex justify-content-between align-items-center pt-2'>
 								<span className='text-muted small'>
 									<i className='bi bi-cash-coin me-2'></i>Cena za dobę:
 								</span>
@@ -94,9 +82,7 @@ export function CarInfoCard({ car, user, onRent, onClose }) {
 						</div>
 					</div>
 
-					{/* Prawa kolumna: Zdjęcie + Przycisk na desktopie (Na mobile ląduje jako PIERWSZA) */}
 					<div className='col-12 col-md-7 d-flex flex-column justify-content-between order-1 order-md-2'>
-						{/* Poprawiono mb-3 na responsywny margines */}
 						<div
 							className='position-relative overflow-hidden rounded-4 shadow-sm mb-md-3 mb-0'
 							style={{ maxHeight: '350px' }}>
@@ -107,35 +93,29 @@ export function CarInfoCard({ car, user, onRent, onClose }) {
 								style={{ minHeight: '200px', maxHeight: '350px' }}
 							/>
 						</div>
-
-						{/* Przycisk ukryty na mobile, widoczny TYLKO na desktopie dokładnie pod zdjęciem */}
 						<div className='d-none d-md-block mt-auto text-end'>
 							<button
-								className={`btn py-2 px-5 rounded-3 fw-medium w-100 ${
-									!car.status_dostepnosci ? 'btn-light text-muted' : user ? 'btn-dark' : 'btn-outline-primary'
-								}`}
+								className={`btn py-2 px-5 rounded-3 fw-medium w-100 ${user ? 'btn-dark' : 'btn-outline-primary'}`}
 								onClick={(e) => {
 									e.stopPropagation()
+									onSelectCar(car)
 								}}
-								disabled={!car.status_dostepnosci || !user}>
-								{!car.status_dostepnosci ? 'Niedostępny' : user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}
+								disabled={!user}>
+								{user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}
 							</button>
 						</div>
 					</div>
 				</div>
 
-				{/* Przycisk widoczny TYLKO na mobile – dodano mt-3 dla odstępu od specyfikacji */}
 				<div className='d-block d-md-none mt-3'>
 					<button
-						className={`btn py-2.5 rounded-3 fw-medium w-100 ${
-							!car.status_dostepnosci ? 'btn-light text-muted' : user ? 'btn-dark' : 'btn-outline-primary'
-						}`}
+						className={`btn py-2.5 rounded-3 fw-medium w-100 ${user ? 'btn-dark' : 'btn-outline-primary'}`}
 						onClick={(e) => {
 							e.stopPropagation()
-							onRent(car.id)
+							onSelectCar(car)
 						}}
-						disabled={!car.status_dostepnosci || !user}>
-						{!car.status_dostepnosci ? 'Niedostępny' : user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}
+						disabled={!user}>
+						{user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}
 					</button>
 				</div>
 			</div>
