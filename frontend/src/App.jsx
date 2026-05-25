@@ -30,7 +30,7 @@ export default function App() {
 
 		const token = session.access_token
 		await rentCar(carId, dataOd, dataDo, token, () => {
-			setSelectedCar(null) // Zamyka okno po udanej rezerwacji
+			setSelectedCar(null)
 		})
 	}
 
@@ -39,7 +39,7 @@ export default function App() {
 	}
 
 	return (
-		<div className='container my-5'>
+		<>
 			{selectedCar && !selectedCar.openRental && (
 				<CarInfoCard
 					car={selectedCar}
@@ -54,6 +54,7 @@ export default function App() {
 			)}
 
 			<AuthZone user={user} onLogout={handleLogout} />
+
 			<Header
 				applyFilters={applyFilters}
 				fuels={getUniqueFuels()}
@@ -62,6 +63,6 @@ export default function App() {
 				filters={filters}
 			/>
 			<CarsList cars={filteredCars} user={user} onRent={handleRent} onSelectCar={setSelectedCar} />
-		</div>
+		</>
 	)
 }

@@ -2,10 +2,53 @@ import 'dotenv/config'
 import express from 'express'
 import { supabase, supabaseAdmin } from './utils/supabase.js'
 import cors from 'cors'
+import e from 'express'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+app.post('/rentals', async (req, res) => {
+	try {
+		console.log('--- NOWE ŻĄDANIE REZERWACJI ---')
+
+		const authHeader = req.headers.authorization
+		if (!authHeader || !authHeader.startsWith('Bearer '))
+			return res.status(401).json({ error: 'Brak tokenu autoryzacji' })
+
+		const token = authHeader.split(' ')[1]
+
+		const {
+			data: { user },
+			error: authError,
+		} = await supabase.auth.getUser(token)
+
+		if (authError || !user) {
+			return res.status(401).json({ error: 'Nieautoryzowany dostęp lub wygasły token' })
+		}
+
+		const uzytkownik_id = user.id
+
+		console.log(`Pobieranie aut dla użytkownika ID: ${uzytkownik_id}`)
+
+		const { data: rentalsData, error: rentalsError } = await supabaseAdmin
+			.from('wypozyczenia')
+			.select(`id, data_wypozyczenia,data_zwrotu, cena_calkowita, auta (id, marka, model, cena_za_dobe, zdjecie)`)
+			.eq('uzytkownik_id', uzytkownik_id)
+
+		if (rentalsError) {
+			console.error('Błąd pobierania z supabase', rentalsError)
+			return res.status(500).json({ error: rentalsError.message })
+		}
+
+		console.log(`Znaleziono ${rentalsData.length} rezerwacji`)
+
+		res.status(200).json({ data: rentalsData })
+	} catch (error) {
+		console.error('Krytyczny błąd serwera Express:', error)
+		res.status(500).json({ error: 'Wewnętrzny błąd serwera' })
+	}
+})
 
 app.post('/rent', async (req, res) => {
 	try {
