@@ -1,97 +1,105 @@
 # Wypożyczalnia Aut
 
-Nowoczesna aplikacja web do wypożyczania samochodów zbudowana w React + Node.js + Supabase.
+Nowoczesna aplikacja webowa do wypożyczania samochodów, zbudowana przy użyciu React, Node.js oraz Supabase. Aplikacja umożliwia użytkownikom przeglądanie, filtrowanie i rezerwowanie pojazdów na wybrany okres.
 
-## Technologie
+## Kluczowe Funkcje
 
-- **Frontend**: React, Vite, Bootstrap CSS
-- **Backend**: Express.js, Node.js
-- **Baza danych**: Supabase (PostgreSQL)
-- **Autentykacja**: Supabase Auth
+-   **Uwierzytelnianie Użytkowników:** Bezpieczna rejestracja i logowanie za pomocą Supabase Auth.
+-   **Przeglądanie Floty:** Dostęp do listy dostępnych samochodów z kluczowymi informacjami.
+-   **Zaawansowane Filtrowanie:** Możliwość filtrowania pojazdów według kategorii, ceny, rodzaju paliwa i skrzyni biegów.
+-   **Wyszukiwanie:** Szybkie wyszukiwanie aut po marce lub modelu.
+-   **System Rezerwacji:** Interaktywny kalendarz do wyboru dat wynajmu z dynamicznym obliczaniem ceny. Zajęte terminy są blokowane w czasie rzeczywistym.
+-   **Historia Wypożyczeń:** Dedykowana strona, na której zalogowani użytkownicy mogą przeglądać swoje przeszłe rezerwacje.
 
-## Instalacja
+## Stos Technologiczny
 
-### Frontend
+-   **Frontend:** React, Vite, React Router, Bootstrap
+-   **Backend:** Node.js, Express.js
+-   **Baza Danych i Autentykacja:** Supabase
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## Konfiguracja i Uruchomienie
 
-### Backend
+### Wymagania
 
-```bash
-cd backend
-npm install
-npm start
-```
+-   Node.js (wersja 18 lub nowsza)
+-   npm
 
-Backend będzie dostępny na `http://localhost:3000`
-Frontend będzie dostępny na `http://localhost:5173`
+### Zmienne Środowiskowe
 
-## Zmienne środowiskowe
+Przed uruchomieniem aplikacji, utwórz pliki `.env` w folderach `frontend` i `backend`, a następnie uzupełnij je swoimi kluczami Supabase.
 
-### Frontend (.env)
+#### Frontend (`frontend/.env`)
 
 ```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_anon_key
+VITE_SUPABASE_URL=twoj_supabase_url
+VITE_SUPABASE_ANON_KEY=twoj_klucz_anon
 ```
 
-### Backend (.env)
+#### Backend (`backend/.env`)
 
 ```
-SUPABASE_URL=your_supabase_url
-SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+SUPABASE_URL=twoj_supabase_url
+SUPABASE_ANON_KEY=twoj_klucz_anon
+SUPABASE_SERVICE_ROLE_KEY=twoj_klucz_service_role
 ```
 
-## Struktura projektu
+### Instalacja i Uruchomienie
+
+#### Backend
+
+1.  Przejdź do folderu `backend`:
+    ```bash
+    cd backend
+    ```
+2.  Zainstaluj zależności:
+    ```bash
+    npm install
+    ```
+3.  Uruchom serwer:
+    ```bash
+    npm start
+    ```
+    Serwer backendu nasłuchuje na `http://localhost:3000`.
+
+#### Frontend
+
+1.  Przejdź do folderu `frontend`:
+    ```bash
+    cd frontend
+    ```
+2.  Zainstaluj zależności:
+    ```bash
+    npm install
+    ```
+3.  Uruchom aplikację deweloperską:
+    ```bash
+    npm run dev
+    ```
+    Aplikacja frontendowa będzie dostępna pod adresem `http://localhost:5173`.
+
+## Struktura Projektu
 
 ```
-Projekcik/
+wypozyczalnia/
 ├── backend/
-│   ├── server.js
+│   ├── server.js           # Główny plik serwera Express.js
 │   ├── package.json
-│   ├── .env
 │   ├── utils/
-│   │   └── supabase.js
+│   │   └── supabase.js     # Konfiguracja klienta Supabase dla backendu
 │   └── data/
-│       ├── cars.csv
-│       └── cars.json
+│       └── cars.json       # Przykładowe dane samochodów
 └── frontend/
     ├── src/
-    │   ├── components/
-    │   │   ├── AuthZone.jsx
-    │   │   ├── Header.jsx
-    │   │   ├── CarCard.jsx
-    │   │   └── CarsList.jsx
-    │   ├── hooks/
-    │   │   ├── useAuth.js
-    │   │   └── useCars.js
-    │   ├── services/
-    │   │   └── rentService.js
+    │   ├── components/     # Komponenty React (AuthZone, CarCard, Filters, etc.)
+    │   ├── hooks/          # Haki React (useAuth, useCars)
+    │   ├── services/       # Logika komunikacji z backendem (rentService)
     │   ├── utils/
-    │   │   └── supabase.js
-    │   ├── App.jsx
-    │   ├── App.css
-    │   ├── main.jsx
-    │   └── index.html
-    ├── package.json
-    ├── vite.config.js
-    └── .env
+    │   │   └── supabase.js # Konfiguracja klienta Supabase dla frontendu
+    │   ├── App.jsx         # Główny komponent aplikacji
+    │   └── main.jsx        # Punkt wejścia aplikacji, routing
+    └── package.json
 ```
-
-## Funkcje
-
-- 🔐 Autentykacja użytkowników (rejestracja/logowanie)
-- 🚗 Przeglądanie dostępnych samochodów
-- 🔍 Wyszukiwanie pojazdów
-- 📅 Wypożyczanie samochodów na 3 dni
-- 📊 Status dostępności w czasie rzeczywistym
-- 💾 Dane przechowywane w Supabase
 
 ## Licencja
 
-MIT
+Projekt jest udostępniony na licencji [MIT](https://opensource.org/licenses/MIT).
