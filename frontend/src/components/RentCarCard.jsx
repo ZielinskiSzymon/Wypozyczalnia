@@ -172,18 +172,26 @@ export default function RentCarCard({ car, user, onRent, onClose }) {
 									</div>
 								</div>
 							) : (
-								<div className='p-3 text-center rounded-4 border border-dashed text-muted small'>
+								<div className='p-3 text-center rounded-4 border text-muted small fst-italic'>
 									Zaznacz zakres dat na kalendarzu, aby obliczyć cenę
 								</div>
 							)}
 						</div>
 					</div>
 
+					{/* POPRAWKA: shadow-md (Tailwind) → shadow (Bootstrap) */}
 					<button
 						type='submit'
-						className='btn btn-primary w-100 py-3 fw-bold shadow-md rounded-3'
+						className='btn btn-primary w-100 py-3 fw-bold shadow rounded-3'
 						disabled={!startDate || !endDate || isSubmitting}>
-						{isSubmitting ? 'PRZETWARZANIE...' : 'POTWIERDŹ REZERWACJĘ'}
+						{isSubmitting ? (
+							<>
+								<span className='spinner-border spinner-border-sm me-2' role='status' aria-hidden='true'></span>
+								PRZETWARZANIE...
+							</>
+						) : (
+							'POTWIERDŹ REZERWACJĘ'
+						)}
 					</button>
 				</form>
 			</div>

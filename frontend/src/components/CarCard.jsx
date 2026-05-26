@@ -53,7 +53,10 @@ export default function CarCard({ car, user, onSelectCar }) {
 							className={`btn w-100 py-2 rounded-3 fw-medium ${user ? 'btn-dark' : 'btn-outline-primary'}`}
 							onClick={(e) => {
 								e.stopPropagation()
-								onSelectCar(car)
+								if(user)
+									onSelectCar({...car, openRental: true})
+								else
+									onSelectCar(car)
 							}}
 							disabled={!user}>
 							{user ? 'Wypożycz teraz' : 'Zaloguj się, aby wypożyczyć'}

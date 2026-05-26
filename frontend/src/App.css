@@ -14,8 +14,6 @@
 }
 
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Roboto', sans-serif;
 }
@@ -73,7 +71,6 @@ body {
 	border-radius: 0.5rem;
 	font-weight: 600;
 	transition: all 0.2s ease;
-	padding: 0.625rem 1.25rem !important;
 }
 
 .btn-primary,
@@ -193,6 +190,10 @@ body {
 	animation: fadeInUp 0.4s ease-out both;
 }
 
+.animate-fade-in {
+	animation: fadeIn 0.3s ease-out;
+}
+
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -211,6 +212,52 @@ body {
 	to {
 		opacity: 1;
 	}
+}
+
+/* Dot wskaźnik statusu zalogowania */
+.dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+
+.animate-pulse {
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+}
+
+/* Navbar */
+.navbar-brand-link {
+	transition:
+		color 0.15s ease,
+		background-color 0.15s ease;
+	border-radius: 0.5rem;
+	padding: 0.4rem 0.75rem;
+}
+
+.navbar-brand-link.active {
+	color: #0d6efd !important;
+	background-color: #e8f0fe;
+	font-weight: 700;
+}
+
+.navbar-brand-link:not(.active) {
+	color: #343a40 !important;
+}
+
+.navbar-brand-link:hover {
+	background-color: #f0f4ff;
+	color: #0d6efd !important;
 }
 
 /* STYLOWANIE KALENDARZA (LIGHT THEME) */

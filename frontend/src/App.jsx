@@ -56,10 +56,10 @@ export default function App() {
 			<AuthZone user={user} onLogout={handleLogout} />
 
 			<Header
-				applyFilters={applyFilters}
+				onFilterChange={applyFilters}
 				fuels={getUniqueFuels()}
 				gearboxes={getUniqueGearboxes()}
-				chassises={getUniqueChassises()}
+				chassis={getUniqueChassises()}
 				filters={filters}
 			/>
 			<CarsList cars={filteredCars} user={user} onRent={handleRent} onSelectCar={setSelectedCar} />

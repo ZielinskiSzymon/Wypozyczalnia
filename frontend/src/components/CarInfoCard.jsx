@@ -31,7 +31,8 @@ export function CarInfoCard({ car, user, onSelectCar, onClose }) {
 				<div className='row g-4 pt-2'>
 					<div className='col-12 col-md-5 d-flex flex-column justify-content-between order-2 order-md-1'>
 						<div>
-							<span className='badge bg-primary mb-2'>{car.typ_nadwozia}</span>
+							{/* POPRAWKA: car.kategoria zamiast car.typ_nadwozia – spójne z useCars.js */}
+							<span className='badge bg-primary mb-2'>{car.kategoria || car.typ_nadwozia}</span>
 							<h3 className='fw-bold text-dark mb-1'>
 								{car.marka} {car.model}
 							</h3>
@@ -39,19 +40,20 @@ export function CarInfoCard({ car, user, onSelectCar, onClose }) {
 
 							<h6 className='fw-bold text-secondary text-uppercase small mb-3'>Specyfikacja pojazdu</h6>
 							<div className='d-flex flex-column gap-2 mb-4'>
-								<div className='d-flex justify-content-between border-bottom pb-1.5 fs-7'>
+								{/* POPRAWKA: pb-1.5 → pb-2 (Bootstrap nie obsługuje .5) */}
+								<div className='d-flex justify-content-between border-bottom pb-2 small'>
 									<span className='text-muted'>
 										<i className='bi bi-gear-wide-connected me-2'></i>Skrzynia biegów
 									</span>
 									<span className='fw-semibold text-dark'>{car.skrzynia_biegow}</span>
 								</div>
-								<div className='d-flex justify-content-between border-bottom pb-1.5 fs-7'>
+								<div className='d-flex justify-content-between border-bottom pb-2 small'>
 									<span className='text-muted'>
 										<i className='bi bi-fuel-pump me-2'></i>Rodzaj paliwa
 									</span>
 									<span className='fw-semibold text-dark'>{car.rodzaj_paliwa}</span>
 								</div>
-								<div className='d-flex justify-content-between border-bottom pb-1.5 fs-7'>
+								<div className='d-flex justify-content-between border-bottom pb-2 small'>
 									<span className='text-muted'>
 										<i className='bi bi-people me-2'></i>Liczba miejsc
 									</span>
@@ -96,9 +98,10 @@ export function CarInfoCard({ car, user, onSelectCar, onClose }) {
 					</div>
 				</div>
 
+				{/* POPRAWKA: py-2.5 → py-2 (Bootstrap nie obsługuje .5) */}
 				<div className='d-block d-md-none mt-3'>
 					<button
-						className={`btn py-2.5 rounded-3 fw-medium w-100 ${user ? 'btn-dark' : 'btn-outline-primary'}`}
+						className={`btn py-2 rounded-3 fw-medium w-100 ${user ? 'btn-dark' : 'btn-outline-primary'}`}
 						onClick={(e) => {
 							e.stopPropagation()
 							onSelectCar(car)
