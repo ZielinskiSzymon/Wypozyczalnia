@@ -23,260 +23,52 @@ body {
 	color: var(--text-dark);
 }
 
-/* Strefa Logowania / Rejestracji */
-.auth-zone {
-	background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-	border: 1px solid var(--border-light) !important;
-	box-shadow: var(--shadow-sm) !important;
-	transition: all 0.2s ease;
-	animation: fadeIn 0.3s ease-out;
-}
-
-.auth-zone:hover {
-	box-shadow: var(--shadow-md) !important;
-	border-color: var(--primary-light) !important;
-}
-
-/* Karta Samochodu */
-.card-car-custom {
-	background: white;
-	border: 1px solid var(--border-light) !important;
-	transition: all 0.2s ease;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-.card-car-custom:hover {
-	transform: translateY(-4px);
-	box-shadow: var(--shadow-lg) !important;
-	border-color: var(--primary-light) !important;
-}
-
-.img-transition {
-	transition: transform 0.3s ease;
-}
-
-.card-car-custom:hover .img-transition {
-	transform: scale(1.05);
-}
-
-.szczegoly {
-	margin-top: auto;
-	width: 100%;
-}
-
-/* Przyciski globalne */
-.btn {
-	border-radius: 0.5rem;
-	font-weight: 600;
-	transition: all 0.2s ease;
-}
-
-.btn-primary,
-.btn-dark {
-	box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover,
-.btn-dark:hover {
-	transform: translateY(-2px);
-	box-shadow: var(--shadow-md);
-}
-
-.btn-primary {
-	background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-	border: none;
-	color: white;
-}
-
-.btn-dark {
-	background: var(--text-dark);
-	border: none;
-	color: white;
-}
-
-.btn-dark:hover {
-	background: var(--primary-dark);
-	color: white;
-}
-
-.btn-outline-danger {
-	color: var(--danger-color);
-	border: 2px solid var(--danger-color);
-}
-
-.btn-outline-danger:hover {
-	background: var(--danger-color);
-	border-color: var(--danger-color);
-	color: white;
-}
-
-.btn:disabled {
-	opacity: 0.6;
-	cursor: not-allowed;
-	transform: none !important;
-}
-
-/* Badges i statusy */
-.badge {
-	font-size: 0.75rem;
-	font-weight: 600;
-	padding: 0.375rem 0.75rem !important;
-	border-radius: 9999px !important;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-}
-
-.bg-success-subtle {
-	box-shadow: var(--shadow-sm) !important;
-	background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
-}
-
-.bg-danger-subtle {
-	background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
-	color: var(--danger-color) !important;
-}
-
-.text-success {
-	color: var(--success-color) !important;
-}
-
-.text-danger {
-	color: var(--danger-color) !important;
-}
-
-/* Nagłówek i Filtry */
-.header {
-	margin-bottom: 2rem;
-	padding-bottom: 1.5rem;
-	border-bottom: 2px solid var(--border-light);
-}
-
-.header h1 {
-	font-size: 2rem;
-	font-weight: 800;
-	background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
-
-.header p {
-	color: var(--text-muted);
-	font-size: 0.95rem;
-}
-
-.form-control,
-.form-select {
-	border: 1px solid var(--border-light) !important;
-	border-radius: 0.5rem !important;
-	padding: 0.625rem 1rem !important;
-	font-size: 0.9rem !important;
-	transition: all 0.2s ease !important;
-	background-color: #fff !important;
-	color: var(--text-dark) !important;
-}
-
-.form-control:focus,
-.form-select:focus {
-	border-color: var(--primary-light) !important;
-	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
-	outline: none !important;
-}
-
-/* Animacje i efekty */
-.animate-card {
-	animation: fadeInUp 0.4s ease-out both;
-}
-
-.animate-fade-in {
-	animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(15px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-/* Dot wskaźnik statusu zalogowania */
-.dot {
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-}
-
-.animate-pulse {
-	animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.4;
-	}
-}
-
-/* Navbar */
 .navbar-brand-link {
-	transition:
-		color 0.15s ease,
-		background-color 0.15s ease;
-	border-radius: 0.5rem;
-	padding: 0.4rem 0.75rem;
-}
-
-.navbar-brand-link.active {
-	color: #0d6efd !important;
-	background-color: #e8f0fe;
-	font-weight: 700;
-}
-
-.navbar-brand-link:not(.active) {
-	color: #343a40 !important;
+	color: var(--text-muted);
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	transition: all 0.2s ease;
 }
 
 .navbar-brand-link:hover {
-	background-color: #f0f4ff;
-	color: #0d6efd !important;
+	color: var(--primary-color);
+	background-color: #f1f5f9;
 }
 
-/* STYLOWANIE KALENDARZA (LIGHT THEME) */
+.navbar-brand-link.active {
+	color: var(--primary-color) !important;
+	background-color: #eff6ff;
+	font-weight: 600;
+}
+@media (min-width: 992px) {
+	.auth-input-wrapper {
+		width: 200px !important;
+	}
+
+	.auth-input-wrapper .form-control {
+		height: 40px !important;
+	}
+
+	.auth-btn-container .btn {
+		height: 40px !important;
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+		display: inline-flex !important;
+		align-items: center;
+	}
+}
+
 .custom-calendar-container .react-calendar {
+	border: none !important;
 	width: 100% !important;
-	background: #ffffff !important;
-	border: 1px solid var(--border-light) !important;
-	border-radius: 12px !important;
-	font-family: 'Roboto', sans-serif !important;
-	padding: 8px;
-	box-shadow: var(--shadow-sm) !important;
+	background: transparent !important;
 }
 
 .custom-calendar-container .react-calendar__navigation button {
-	color: var(--primary-dark) !important;
-	min-width: 44px;
-	background: none;
+	color: var(--primary-color) !important;
+	font-weight: bold;
 	font-size: 1.1rem;
-	font-weight: 700;
 }
 
 .custom-calendar-container .react-calendar__navigation button:enabled:hover,
@@ -303,7 +95,6 @@ body {
 	background-color: #f1f5f9 !important;
 }
 
-/* ZAJĘTE DNI - DELIKATNY CZERWONY */
 .custom-calendar-container .react-calendar__tile.booked-tile {
 	background: #fff1f2 !important;
 	color: #f43f5e !important;
@@ -312,23 +103,149 @@ body {
 	cursor: not-allowed !important;
 }
 
-/* ZAKRESY WYBRANYCH DAT */
 .custom-calendar-container .react-calendar__tile--range {
 	background-color: #eff6ff !important;
 	color: var(--primary-color) !important;
-	border-radius: 0px !important;
+	border-radius: 0px;
 }
 
 .custom-calendar-container .react-calendar__tile--rangeStart {
-	background-color: var(--primary-color) !important;
-	color: white !important;
 	border-top-left-radius: 8px !important;
 	border-bottom-left-radius: 8px !important;
+	background-color: var(--primary-color) !important;
+	color: white !important;
 }
 
 .custom-calendar-container .react-calendar__tile--rangeEnd {
-	background-color: var(--primary-color) !important;
-	color: white !important;
 	border-top-right-radius: 8px !important;
 	border-bottom-right-radius: 8px !important;
+	background-color: var(--primary-color) !important;
+	color: white !important;
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	20%,
+	60% {
+		transform: translateX(-6px);
+	}
+	40%,
+	80% {
+		transform: translateX(6px);
+	}
+}
+
+.animate-shake {
+	animation: shake 0.4s ease-in-out;
+}
+.mobile-bottom-nav {
+	display: none;
+}
+
+@media (max-width: 991.98px) {
+	.desktop-top-nav {
+		display: none !important;
+	}
+
+	.mobile-bottom-nav {
+		display: flex;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 65px;
+		background-color: rgba(255, 255, 255, 0.92);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.06);
+		z-index: 1040;
+		justify-content: space-around;
+		align-items: center;
+		padding-bottom: env(safe-area-inset-bottom);
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+	}
+
+	.mobile-nav-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: var(--text-muted);
+		text-decoration: none;
+		font-size: 0.72rem;
+		font-weight: 600;
+		background: none;
+		border: none;
+		padding: 4px 0;
+		width: 25%;
+		height: 100%;
+		transition: all 0.2s ease;
+	}
+
+	.mobile-nav-item i {
+		font-size: 1.35rem;
+		margin-bottom: 2px;
+	}
+
+	.mobile-nav-item.active,
+	.mobile-nav-item:focus {
+		color: var(--primary-color) !important;
+	}
+
+	body {
+		padding-bottom: calc(85px + env(safe-area-inset-bottom)) !important;
+	}
+
+	/* Dolna Szuflada Offcanvas Bootstrap */
+	.offcanvas-bottom {
+		border-top-left-radius: 24px !important;
+		border-top-right-radius: 24px !important;
+		z-index: 1070 !important;
+	}
+
+	.offcanvas-body {
+		padding: 1.5rem 1.5rem calc(85px + env(safe-area-inset-bottom)) !important;
+		overflow-y: auto;
+	}
+
+	.auth-zone-responsive .auth-dynamic-form {
+		flex-direction: column !important;
+		gap: 12px !important;
+	}
+
+	.auth-input-wrapper {
+		width: 100% !important;
+	}
+
+	.auth-btn-container {
+		flex-direction: column !important;
+		width: 100% !important;
+		gap: 10px !important;
+	}
+
+	.auth-btn-container .btn,
+	.auth-input-wrapper .form-control {
+		height: 48px !important;
+		width: 100% !important;
+	}
+
+	.position-relative i {
+		padding-left: 15px;
+		font-size: 1.1rem;
+	}
+
+	.position-relative .form-control {
+		padding-left: 2.8rem !important;
+	}
+
+	/* Skalowanie nagłówka */
+	.header {
+		padding: 1.5rem 1rem !important;
+	}
+	.header h1 {
+		font-size: 1.6rem !important;
+	}
 }

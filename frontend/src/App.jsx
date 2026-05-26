@@ -53,8 +53,6 @@ export default function App() {
 				<RentCarCard car={selectedCar} user={user} onRent={handleRent} onClose={() => setSelectedCar(null)} />
 			)}
 
-			<AuthZone user={user} onLogout={handleLogout} />
-
 			<Header
 				onFilterChange={applyFilters}
 				fuels={getUniqueFuels()}

@@ -6,8 +6,8 @@ export default function Filters({ onFilterChange, fuels, gearboxes, chassis, fil
 	}
 
 	return (
-		<div className='p-4 bg-white border border-light-subtle rounded-4 shadow-sm mb-4 animate-fade-in'>
-			<div className='row justify-content-start g-2'>
+		<div className='p-2 p-md-4 bg-white border border-light-subtle rounded-4 shadow-sm mb-4 animate-fade-in'>
+			<div className='row justify-content-start g-1 g-md-2'>
 				<div className='col-12 col-md-6 col-lg-3'>
 					<select
 						className='form-select border-light-subtle text-sm px-3 py-1'

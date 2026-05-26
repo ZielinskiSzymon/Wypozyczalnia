@@ -8,6 +8,7 @@ export default function AuthZone({ user, onLogout }) {
 
 	const handleLogin = async (e) => {
 		e.preventDefault()
+		if (!email || !password) return
 		const { error } = await supabase.auth.signInWithPassword({ email, password })
 		if (error) alert('Błąd logowania: ' + error.message)
 		else {
@@ -18,6 +19,7 @@ export default function AuthZone({ user, onLogout }) {
 
 	const handleSignUp = async (e) => {
 		e.preventDefault()
+		if (!email || !password) return
 		const { error } = await supabase.auth.signUp({ email, password })
 		if (error) alert('Błąd rejestracji: ' + error.message)
 		else {
@@ -29,85 +31,85 @@ export default function AuthZone({ user, onLogout }) {
 	}
 
 	return (
-		<div className='auth-zone mb-4 p-3 p-sm-4 bg-white border-0 shadow-sm rounded-4 animate-fade-in'>
-			<div className='d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 w-100'>
-				
-				{/* Lewa strona: Status / Nagłówek */}
-				<div className='text-center text-md-start'>
-					{user ? (
-						<div className='d-flex align-items-center justify-content-center justify-content-md-start gap-2'>
-							<span className='dot bg-success animate-pulse me-1' style={{ width: '8px', height: '8px', borderRadius: '50%', display: 'inline-block' }}></span>
-							<span className='text-muted small'>
-								Zalogowany jako: <strong className='text-dark d-block d-sm-inline'>{user.email}</strong>
-							</span>
+		<div className='auth-zone-responsive w-100'>
+			<div className='d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 w-100'>
+				{user ? (
+					/* WIDOK DLA ZALOGOWANEGO UŻYTKOWNIKA */
+					<div className='d-flex flex-column flex-lg-row align-items-center justify-content-between w-100 py-1 px-2 rounded-3 bg-light border border-light-subtle gap-3'>
+						<div className='d-flex align-items-center gap-2'>
+							<div
+								className='bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm'
+								style={{ width: '38px', height: '38px' }}>
+								{user.email?.charAt(0).toUpperCase()}
+							</div>
+							<div className='d-flex flex-column align-items-start'>
+								<span className='text-dark fw-semibold lh-sm text-truncate small' style={{ maxWidth: '180px' }}>
+									Zalogowano jako
+								</span>
+								<span className='text-muted small text-truncate lh-sm' style={{ maxWidth: '180px' }}>
+									{user.email}
+								</span>
+							</div>
 						</div>
-					) : (
-						<>
-							<h5 className='fw-bold m-0 text-dark fs-6'>
-								{isSignUpView ? 'Dołącz do nas i rezerwuj' : 'Zaloguj się na konto'}
-							</h5>
-							<p className='text-muted small m-0 d-none d-sm-block'>Aby rezerwować pojazdy online</p>
-						</>
-					)}
-				</div>
-
-				{/* Prawa strona: Akcje (Zgrabny formularz lub ładny przycisk) */}
-				<div className='w-100 w-md-auto d-flex justify-content-center justify-content-md-end'>
-					{user ? (
-						<button 
-							className='btn btn-sm btn-outline-danger px-4 rounded-pill w-100 w-sm-auto' 
-							style={{ maxWidth: '200px' }} 
+						<button
 							onClick={onLogout}
-						>
-							Wyloguj się
+							className='btn btn-outline-danger px-3 rounded-3 fw-medium text-sm d-flex align-items-center justify-content-center gap-2 auth-btn-container w-100 w-lg-auto'
+							style={{ height: '40px' }}>
+							<i className='bi bi-box-arrow-right'></i>
+							<span>Wyloguj się</span>
 						</button>
-					) : (
-						<form
-							onSubmit={isSignUpView ? handleSignUp : handleLogin}
-							className='d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center justify-content-md-end gap-2 w-100'
-						>
+					</div>
+				) : (
+					/* FORMULARZ LOGOWANIA / REJESTRACJI */
+					<form
+						onSubmit={isSignUpView ? handleSignUp : handleLogin}
+						className='d-flex align-items-center w-100 auth-dynamic-form'>
+						<div className='d-flex align-items-center gap-3 w-100 auth-dynamic-form'>
 							{/* Input Email */}
-							<input
-								type='email'
-								placeholder='Adres e-mail'
-								className='form-control rounded-3 border-light-subtle px-3 py-2 text-sm w-100'
-								style={{ maxWidth: '240px' }}
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
-							
+							<div className='position-relative auth-input-wrapper'>
+								<i className='bi bi-envelope position-absolute top-50 start-0 translate-middle-y text-muted ms-3'></i>
+								<input
+									type='email'
+									placeholder='Adres e-mail'
+									className='form-control rounded-3 ps-5 text-sm shadow-none border-light-subtle'
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									required
+								/>
+							</div>
+
 							{/* Input Hasło */}
-							<input
-								type='password'
-								placeholder='Hasło'
-								className='form-control rounded-3 border-light-subtle px-3 py-2 text-sm w-100'
-								style={{ maxWidth: '180px' }}
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
-							
-							{/* Przyciski operacyjne */}
-							<div className='d-flex align-items-center gap-2 mt-1 mt-sm-0'>
+							<div className='position-relative auth-input-wrapper'>
+								<i className='bi bi-lock position-absolute top-50 start-0 translate-middle-y text-muted ms-3'></i>
+								<input
+									type='password'
+									placeholder='Hasło'
+									className='form-control rounded-3 ps-5 text-sm shadow-none border-light-subtle'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+								/>
+							</div>
+
+							{/* Przyciski Akcji */}
+							<div className='d-flex flex-row gap-2 auth-btn-container align-items-center w-100 w-lg-auto'>
 								<button
 									type='submit'
-									className='btn btn-primary px-4 py-2 rounded-3 fw-medium shadow-sm flex-grow-1 flex-sm-grow-0 text-nowrap'
-								>
-									{isSignUpView ? 'Zarejestruj' : 'Zaloguj'}
+									className='btn btn-primary px-4 rounded-3 fw-bold shadow-sm text-nowrap d-flex align-items-center justify-content-center gap-2'>
+									<i className={`bi ${isSignUpView ? 'bi-person-plus-fill' : 'bi-box-arrow-in-right'}`}></i>
+									<span>{isSignUpView ? 'Zarejestruj' : 'Zaloguj'}</span>
 								</button>
+
 								<button
 									type='button'
-									className='btn btn-link btn-sm text-decoration-none fw-bold text-nowrap small'
-									onClick={() => setIsSignUpView(!isSignUpView)}
-								>
-									{isSignUpView ? 'Logowanie' : 'Stwórz konto'}
+									className='btn btn-light border px-3 fw-semibold text-nowrap small text-center rounded-3 text-muted'
+									onClick={() => setIsSignUpView(!isSignUpView)}>
+									{isSignUpView ? 'Masz konto? Zaloguj' : 'Utwórz konto'}
 								</button>
 							</div>
-						</form>
-					)}
-				</div>
-
+						</div>
+					</form>
+				)}
 			</div>
 		</div>
 	)

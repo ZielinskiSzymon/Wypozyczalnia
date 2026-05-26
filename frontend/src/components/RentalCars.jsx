@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth' // Importujemy uwierzytelnianie
 
 export default function RentalCars() {
 	const location = useLocation()
+	const { user } = useAuth() // Pobieramy stan zalogowania
 
 	const isActive = (path) => location.pathname === path
 
@@ -16,12 +18,15 @@ export default function RentalCars() {
 						Auta do wypożyczenia
 					</Link>
 
-					<Link
-						to='/rentals'
-						className={`navbar-brand-link text-decoration-none d-flex align-items-center gap-2 fs-5 ${isActive('/rentals') ? 'active' : ''}`}>
-						<i className='bi bi-calendar-check-fill'></i>
-						Moje wypożyczenia
-					</Link>
+					{/* Zakładka pokazuje się TYLKO dla zalogowanych */}
+					{user && (
+						<Link
+							to='/rentals'
+							className={`navbar-brand-link text-decoration-none d-flex align-items-center gap-2 fs-5 ${isActive('/rentals') ? 'active' : ''}`}>
+							<i className='bi bi-calendar-check-fill'></i>
+							Moje wypożyczenia
+						</Link>
+					)}
 				</div>
 			</div>
 		</nav>
