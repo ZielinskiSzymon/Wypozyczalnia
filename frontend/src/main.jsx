@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import MyRentalsPage from './components/MyRentalsPage.jsx'
 import Navigation from './components/Navigation.jsx'
+import AdminPage from './components/AdminPage.jsx'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
@@ -38,6 +39,13 @@ createRoot(document.getElementById('root')).render(
 						<AppLayout>
 							<MyRentalsPage />
 						</AppLayout>
+					}
+				/>
+
+				<Route
+					path='/admin'
+					element={
+						<AdminPage/>
 					}
 				/>
 			</Routes>

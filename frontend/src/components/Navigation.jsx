@@ -4,6 +4,7 @@ import AuthZone from './AuthZone'
 
 export default function Navigation() {
 	const { user, logout } = useAuth()
+	const isAdmin = user?.user_metadata?.role === 'admin'
 
 	const handleLogout = async () => {
 		await logout()
@@ -34,6 +35,17 @@ export default function Navigation() {
 									Moje Rezerwacje
 								</NavLink>
 							)}
+							{/* Link do panelu admina — widoczny tylko dla adminów */}
+							{isAdmin && (
+								<NavLink
+									to='/admin'
+									className={({ isActive }) =>
+										`navbar-brand-link text-decoration-none d-flex align-items-center gap-1 ${isActive ? 'active' : ''}`
+									}>
+									<i className='bi bi-shield-fill-check text-danger' style={{ fontSize: 13 }}></i>
+									Admin
+								</NavLink>
+							)}
 						</div>
 					</div>
 
@@ -43,6 +55,7 @@ export default function Navigation() {
 				</div>
 			</nav>
 
+			{/* ── Mobilna nawigacja dolna ── */}
 			<nav className='mobile-bottom-nav shadow-lg'>
 				<NavLink to='/' className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}>
 					<i className='bi bi-car-front-fill'></i>
@@ -54,8 +67,19 @@ export default function Navigation() {
 					<span>Rezerwacje</span>
 				</NavLink>
 
-				{/* Przycisk otwierający dolną szufladę z logowaniem */}
-				<button className='mobile-nav-item' type='button' data-bs-toggle='offcanvas' data-bs-target='#mobileAuthDrawer'>
+				{/* Link do admina w mobilnej nawigacji */}
+				{isAdmin && (
+					<NavLink to='/admin' className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}>
+						<i className='bi bi-shield-fill-check'></i>
+						<span>Admin</span>
+					</NavLink>
+				)}
+
+				<button
+					className='mobile-nav-item'
+					type='button'
+					data-bs-toggle='offcanvas'
+					data-bs-target='#mobileAuthDrawer'>
 					<div className='position-relative'>
 						<i className={`bi ${user ? 'bi-person-check-fill text-success' : 'bi-person-circle'}`}></i>
 						{user && (

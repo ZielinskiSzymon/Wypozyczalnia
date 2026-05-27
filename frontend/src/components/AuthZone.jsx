@@ -53,8 +53,8 @@ export default function AuthZone({ user, onLogout }) {
 						</div>
 						<button
 							onClick={onLogout}
-							className='btn btn-outline-danger px-3 rounded-3 fw-medium text-sm d-flex align-items-center justify-content-center gap-2 auth-btn-container w-100 w-lg-auto'
-							style={{ height: '40px' }}>
+							className='btn btn-outline-danger f-flex flex-row px-3 rounded-3 fw-medium text-sm d-flex align-items-center justify-content-center gap-2 auth-btn-container w-100 w-lg-auto'
+							>
 							<i className='bi bi-box-arrow-right'></i>
 							<span>Wyloguj się</span>
 						</button>

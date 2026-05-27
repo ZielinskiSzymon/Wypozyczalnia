@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../utils/supabase';
-import { getUserRentals } from '../services/rentService';
+import { getUserRentals, deleteRental } from '../services/rentService';
 
-// Optymalizacja wydajności: Inicjalizujemy formattery daty i waluty poza komponentem.
-// Dzięki temu nie tworzymy nowych instancji obiektów formatujących przy każdym renderowaniu widoku.
 const dateFormatter = new Intl.DateTimeFormat('pl-PL', {
 	day: '2-digit',
 	month: 'short',
@@ -23,29 +21,29 @@ export default function MyRentalsPage() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	useEffect(() => {
-		const fetchUserRentals = async () => {
-			try {
-				const {
-					data: { session },
-				} = await supabase.auth.getSession();
+	const fetchUserRentals = async () => {
+		try {
+			const {
+				data: { session },
+			} = await supabase.auth.getSession();
 
-				if (!session) {
-					setError('Musisz być zalogowany, aby zobaczyć swoje rezerwacje.');
-					setLoading(false);
-					return;
-				}
-
-				const token = session.access_token;
-				const data = await getUserRentals(token);
-				setRentals(data);
-			} catch (err) {
-				setError(err.message);
-			} finally {
+			if (!session) {
+				setError('Musisz być zalogowany, aby zobaczyć swoje rezerwacje.');
 				setLoading(false);
+				return;
 			}
-		};
 
+			const token = session.access_token;
+			const data = await getUserRentals(token);
+			setRentals(data || []);
+		} catch (err) {
+			setError(err.message);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
 		if (user) {
 			fetchUserRentals();
 		} else {
@@ -53,7 +51,21 @@ export default function MyRentalsPage() {
 		}
 	}, [user]);
 
-	// Ekran braku logowania
+	const handleDelete = async (rentalId) => {
+		try {
+			const { data: { session } } = await supabase.auth.getSession();
+			if (!session) return;
+
+			// Wywołanie usunięcia z API
+			await deleteRental(rentalId, session.access_token);
+			
+			// Usunięcie elementu ze stanu komponentu, aby zniknął z ekranu bez przeładowania
+			setRentals(rentals.filter(rental => rental.id !== rentalId));
+		} catch (err) {
+			alert(err.message);
+		}
+	};
+
 	if (!user) {
 		return (
 			<div className='container py-5'>
@@ -65,7 +77,6 @@ export default function MyRentalsPage() {
 		);
 	}
 
-	// Ekran ładowania
 	if (loading) {
 		return (
 			<div className='container py-5 d-flex justify-content-center align-items-center' style={{ minHeight: '50vh' }}>
@@ -76,7 +87,6 @@ export default function MyRentalsPage() {
 		);
 	}
 
-	// Ekran błędu
 	if (error) {
 		return (
 			<div className='container py-5'>
@@ -134,7 +144,12 @@ export default function MyRentalsPage() {
 									</div>
 
 									<div className='pt-3 border-top mt-auto d-flex justify-content-between align-items-center'>
-										<span className='text-muted small'>Całkowity koszt</span>
+										<button 
+											onClick={() => handleDelete(rental.id)}
+											className='btn btn-sm btn-outline-danger d-flex align-items-center gap-1'
+										>
+											<i className='bi bi-trash-fill'></i> Usuń
+										</button>
 										<span className='fs-5 fw-bold text-success'>
 											{priceFormatter.format(rental.cena_calkowita)}
 										</span>
